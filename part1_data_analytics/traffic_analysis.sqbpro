@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="traffic_analysis.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="6039"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="HourlyRecordByYear" custom_title="0" dock_id="7" table="4,18:mainHourlyRecordByYear"/><dock_state state="000000ff00000000fd0000000100000002000003c900000226fc0100000004fc00000000000003c90000000000fffffffa000000000100000004fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500330000000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500340100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500350100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f007700730065003200000002ad0000011c0000000000000000fb000000160064006f0063006b00420072006f00770073006500360100000000000003c90000000000000000fb000000160064006f0063006b00420072006f00770073006500370100000000ffffffff0000011800ffffff000003c90000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">-- Temperature (°C)
+-- 
+-- 25 |                 ● Labor Day
+-- 20 |         ●
+-- 15 | ●
+-- 10 |
+--  5 |
+--  0 |
+-- -5 | ● New Year's Day
+-- -10|
+--      2015    2016    2017</sql><sql name="SQL 8*">WITH hourly_data AS (
+    SELECT
+        date_time,
+        DATE(date_time) AS traffic_date,
+        AVG(temp) AS temp_k,
+        AVG(traffic_volume) AS traffic_volume
+    FROM traffic_data
+    WHERE DATE(date_time) IN (
+        '2015-01-01', '2016-01-01', '2017-01-01',
+        '2015-09-07', '2016-09-05', '2017-09-04'
+    )
+    GROUP BY date_time
+),
+holiday_data AS (
+    SELECT
+        CASE
+            WHEN traffic_date LIKE '%-01-01' THEN 'New Year''s Day'
+            ELSE 'Labor Day'
+        END AS holiday,
+        CAST(STRFTIME('%Y', traffic_date) AS INTEGER) AS year,
+        traffic_date,
+        temp_k - 273.15 AS temp_c,
+        traffic_volume
+    FROM hourly_data
+)
+SELECT
+    holiday,
+    year,
+    traffic_date,
+    COUNT(*) AS hours_available,
+    ROUND(AVG(temp_c), 2) AS avg_temp_c,
+    ROUND(MIN(temp_c), 2) AS min_temp_c,
+    ROUND(MAX(temp_c), 2) AS max_temp_c,
+    ROUND(AVG(traffic_volume), 2) AS avg_hourly_traffic,
+    ROUND(MIN(traffic_volume), 0) AS min_hourly_traffic,
+    ROUND(MAX(traffic_volume), 0) AS max_hourly_traffic
+FROM holiday_data
+GROUP BY holiday, year, traffic_date
+ORDER BY holiday, year;</sql><sql name="SQL 10*">SELECT
+    SUM(
+        CASE
+            WHEN traffic_volume &gt; 5500
+             AND temp &gt; 292
+            THEN 1
+            ELSE 0
+        END
+    ) * 1.0
+    /
+    SUM(
+        CASE
+            WHEN traffic_volume &gt; 5500
+            THEN 1
+            ELSE 0
+        END
+    ) AS p_high_temp_given_congestion
+FROM traffic_data;</sql><current_tab id="2"/></tab_sql></sqlb_project>
