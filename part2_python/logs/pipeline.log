@@ -1,0 +1,9 @@
+2026-11-21 19:09:57,151 - INFO - Pipeline started.
+2026-11-21 19:09:57,232 - INFO - File loaded successfully. Rows=48204, Columns=9
+2026-11-21 19:09:57,232 - INFO - Schema validation successful.
+2026-11-21 19:09:57,252 - WARNING - Standardised holiday categories. Unique values before=11, after=12
+2026-11-21 19:09:57,294 - WARNING - Removed 17 duplicate rows.
+2026-11-21 19:09:57,329 - WARNING - Imputed 10 temperature outliers using median value 282.46
+2026-11-21 19:09:57,331 - WARNING - Imputed 1 rainfall outliers (>9000 mm) using median=0.0
+2026-11-21 19:09:57,463 - INFO - Cleaned data saved to data/traffic_cleaned.csv
+2026-11-21 19:09:57,463 - INFO - Pipeline completed successfully.
