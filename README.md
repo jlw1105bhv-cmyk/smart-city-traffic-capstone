@@ -5,221 +5,574 @@ AI, ML and Data Science Capstone Project
 
 ## Project Overview
 
-This project develops a reproducible traffic analytics workflow using the Metro Interstate Traffic Volume dataset.
+This project implements a reproducible traffic analytics workflow using the Metro Interstate Traffic Volume dataset. The workflow demonstrates data engineering, feature engineering, data visualization, logging, command-line application development, and Git-based reproducibility practices.
 
-The solution consists of:
+The project is divided into five tasks:
 
 1. Data Pipeline Construction
 2. Feature Engineering
-3. Data Visualisation
-4. Logging and Reproducibility
-
-Python packages used:
-
-- Pandas
-- NumPy
-- Matplotlib
-- Logging
+3. Traffic Pattern Visualisation
+4. Mini Traffic Analytics Application
+5. GitHub and Reproducibility
 
 ---
 
-## Project Structure
+# Project Structure
 
+```text
 traffic-analytics/
-
+│
 ├── data/
-
-│ ├── Metro_Interstate_Traffic_Volume.csv
-
-│ ├── traffic_cleaned.csv
-
-│ └── traffic_ml_ready.csv
-
+│   ├── Metro_Interstate_Traffic_Volume.csv
+│   ├── traffic_cleaned.csv
+│   └── traffic_ml_ready.csv
 │
-
 ├── figures/
-
-│ ├── traffic_by_hour.png
-
-│ ├── weekday_vs_weekend.png
-
-│ └── congestion_distribution.png
-
+│   ├── traffic_by_hour.png
+│   ├── weekday_vs_weekend.png
+│   └── monthly_traffic_pattern.png
 │
-
 ├── logs/
-
-│ ├── pipeline.log
-
-│ ├── feature_engineering.log
-
-│ └── visualisations.log
-
+│   ├── pipeline.log
+│   ├── feature_engineering.log
+│   ├── visualisations.log
+│   └── traffic_app.log
 │
-
+├── utils/
+│   ├── __init__.py
+│   └── logger_config.py
+│
 ├── pipeline.py
-
 ├── feature_engineering.py
-
 ├── visualisations.py
-
-└── README.md
-
----
-
-## Task 1: Data Pipeline
-
-The pipeline performs:
-
-- CSV loading with exception handling
-- Schema validation
-- Datetime validation
-- Duplicate removal
-- Standardisation of categorical values
-- Outlier detection
-- Median-based imputation
-- Logging of every processing step
-
-Output:
-
-traffic_cleaned.csv
+├── traffic_app.py
+│
+├── README.md
+└── requirements.txt
+```
 
 ---
 
-## Task 2: Feature Engineering
+# Task 1: Data Pipeline Construction
 
-The following machine learning features were created.
+## Objective
 
-### Time Features
+Develop a robust and reproducible data pipeline that loads, validates, cleans and prepares the raw traffic dataset for analysis.
 
-- hour
-- day_of_week
-- month
-- is_weekend
+## Data Cleaning Activities
 
-### Cyclical Encoding
+The pipeline performs the following operations:
+
+### Data Loading
+
+- Loads the raw CSV file using Pandas.
+- Uses exception handling to manage file and parsing errors.
+- Logs dataset dimensions upon successful loading.
+
+### Schema Validation
+
+The dataset schema is validated before processing begins.
+
+Expected columns:
+
+- holiday
+- temp
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_main
+- weather_description
+- date_time
+- traffic_volume
+
+### Data Cleaning
+
+The pipeline:
+
+- Standardises categorical values.
+- Parses and validates datetime records.
+- Removes duplicate rows.
+- Detects invalid temperature values (≤ 0 Kelvin).
+- Detects rainfall measurements exceeding 9000 mm.
+- Imputes outliers using median values.
+- Performs monthly median imputation for missing traffic volumes.
+
+### Processing Logic
+
+The pipeline explicitly uses:
+
+- Functions
+- Loops
+- Conditional statements
+- Exception handling
+
+to satisfy the assignment requirements.
+
+## Output
+
+```text
+data/traffic_cleaned.csv
+```
+
+---
+
+# Task 2: Feature Engineering
+
+## Objective
+
+Create machine-learning-ready features from the cleaned dataset using Pandas and NumPy.
+
+## Time Features
+
+The following temporal features were created:
+
+| Feature | Description |
+|----------|------------|
+| hour | Hour of day (0-23) |
+| day_of_week | Day of week (0-6) |
+| month | Month of year |
+| is_weekend | Weekend indicator |
+
+---
+
+## Cyclical Features
+
+Hour values were cyclically encoded to preserve their circular nature.
+
+Features:
 
 - hour_sin
 - hour_cos
 
-### Weather Features
+This allows machine learning models to recognise that 23:00 and 00:00 are temporally adjacent.
 
-- is_raining
-- is_snowing
-- bad_weather
+---
 
-### Encoded Weather Categories
+## Weather Features
 
-One-hot encoding applied to:
+The following weather-related features were engineered:
 
-- weather_main
+| Feature | Description |
+|----------|------------|
+| is_raining | Rain indicator |
+| is_snowing | Snow indicator |
+| bad_weather | Rain, drizzle, snow or thunderstorm indicator |
 
-### Scaled Numerical Features
+---
+
+## Encoded Weather Variables
+
+One-hot encoding was applied to:
+
+```text
+weather_main
+```
+
+This converts categorical weather conditions into numerical features suitable for machine learning.
+
+---
+
+## Scaled Features
+
+Two continuous variables were normalized using Min-Max scaling:
 
 - temp_scaled
 - traffic_volume_scaled
 
-### Congestion Target
+Scaled values range between:
 
-A congestion category was created using quartile-based thresholds.
+```text
+0.0 – 1.0
+```
 
-| Category | Definition |
-|----------|------------|
-| Low | <= 25th percentile |
-| Medium | 25th - 50th percentile |
-| High | 50th - 75th percentile |
+---
+
+## Congestion Category Target
+
+A new target variable called:
+
+```text
+congestion_level
+```
+
+was created from traffic volume.
+
+### Classification Logic
+
+Traffic volumes were divided using quartile-based thresholds:
+
+| Category | Threshold |
+|----------|-----------|
+| Low | ≤ 25th percentile |
+| Medium | 25th–50th percentile |
+| High | 50th–75th percentile |
 | Very High | > 75th percentile |
 
-This approach creates a balanced, data-driven classification target suitable for machine learning.
+### Rationale
 
-Output:
+Using quartiles creates a balanced and data-driven classification target based on the actual distribution of traffic observations rather than arbitrary thresholds.
 
-traffic_ml_ready.csv
+## Output
+
+```text
+data/traffic_ml_ready.csv
+```
 
 ---
 
-## Task 3: Traffic Pattern Visualisation
+# Task 3: Visualise Traffic Patterns
 
-Three Matplotlib visualisations were produced.
+## Objective
 
-### Figure 1: Average Traffic Volume by Hour
+Use Matplotlib to explore and communicate traffic patterns through meaningful visualisations.
 
-File:
+---
 
+## Figure 1 – Average Traffic Volume by Hour
+
+**File**
+
+```text
 figures/traffic_by_hour.png
+```
 
-Interpretation:
+### Interpretation
 
-Traffic volume increases significantly during morning commuting hours and remains relatively high throughout the working day. A second peak occurs during evening commute periods before traffic decreases overnight. These patterns reflect typical daily commuting behaviour.
+Traffic volume increases during the morning commuting period and remains elevated throughout working hours. A second peak typically occurs during the evening commute before traffic decreases overnight. This pattern reflects typical daily commuting behaviour.
 
 ---
 
-### Figure 2: Weekday vs Weekend Traffic Volume
+## Figure 2 – Weekday vs Weekend Traffic Volume
 
-File:
+**File**
+
+```text
+figures/weekday_vs_weekend.png
+```
+
+### Interpretation
+
+Average traffic volume is higher on weekdays than weekends. This suggests that commuting, business activity and school travel significantly contribute to overall traffic demand.
+
+---
+
+## Figure 3 – Average Monthly Traffic Volume
+
+**File**
+
+```text
+figures/monthly_traffic_pattern.png
+```
+
+### Interpretation
+
+Traffic volume varies throughout the year, indicating potential seasonal influences such as weather conditions, holidays and vacation travel patterns. Monthly trends provide additional insight beyond daily and weekly traffic cycles.
+
+---
+
+# Task 4: Mini Traffic Analytics Application
+
+## Objective
+
+Develop a command-line application that enables users to query the processed dataset and retrieve traffic insights.
+
+The application uses:
+
+- argparse
+- Pandas
+- Logging
+- Exception handling
+- Dataset validation
+
+---
+
+## Available Commands
+
+### 1. Query Traffic Information by Date and Time
+
+Retrieve traffic and weather information for a specific timestamp.
+
+#### Command
+
+```bash
+python traffic_app.py query_datetime --datetime "2017-01-15 08:00:00"
+```
+
+#### Returns
+
+- Timestamp
+- Traffic volume
+- Weather condition
+- Temperature
+
+---
+
+### 2. Identify High-Traffic Periods
+
+Identify hours commonly associated with severe congestion.
+
+#### Command
+
+```bash
+python traffic_app.py high_traffic
+```
+
+#### Returns
+
+- Top high-traffic hours
+- Average traffic volume
+
+---
+
+### 3. Compare Weekday and Weekend Traffic
+
+Compare average traffic demand between weekdays and weekends.
+
+#### Command
+
+```bash
+python traffic_app.py compare
+```
+
+#### Returns
+
+- Average weekday traffic volume
+- Average weekend traffic volume
+
+---
+
+### 4. Recommend Travel Periods
+
+Identify low-congestion travel periods.
+
+#### Command
+
+```bash
+python traffic_app.py travel
+```
+
+#### Returns
+
+- Lowest traffic hours
+- Recommended travel periods
+
+---
+
+### 5. Weather-Based Traffic Analysis
+
+Analyse traffic conditions under a chosen weather category.
+
+#### Command
+
+```bash
+python traffic_app.py weather --condition Rain
+```
+
+#### Returns
+
+- Average traffic volume
+- Average temperature
+
+---
+
+## Input Validation
+
+The application validates:
+
+- Dataset existence
+- Dataset schema
+- Date format correctness
+- Weather queries
+
+Invalid inputs are handled gracefully and recorded in the application log.
+
+---
+
+# Task 5: GitHub and Reproducibility
+
+## Version Control
+
+Git was used throughout the project to maintain source control and project history.
+
+Incremental commits were created for:
+
+- Task 1: Data Pipeline
+- Task 2: Feature Engineering
+- Task 3: Visualisation
+- Task 4: CLI Application
+- Task 5: Documentation and Reproducibility
+
+---
+
+## Logging Configuration
+
+The project implements structured logging using Python's logging module.
+
+Each module creates a logger using:
+
+```python
+logger = logging.getLogger(__name__)
+```
+
+A shared logging configuration is provided by:
+
+```text
+utils/logger_config.py
+```
+
+---
+
+## Logging Output
+
+Logs are written to:
+
+### Console Output
+
+Real-time execution monitoring.
+
+### Log Files
+
+| File | Purpose |
+|--------|----------|
+| logs/pipeline.log | Data loading and cleaning |
+| logs/feature_engineering.log | Feature engineering |
+| logs/visualisations.log | Figure generation |
+| logs/traffic_app.log | Command-line application |
+
+---
+
+## Log Format
+
+All log entries include:
+
+- Timestamp
+- Log Level
+- Module Name
+- Message
+
+Example:
+
+```text
+2026-11-21 14:05:18 - INFO - pipeline - Pipeline started.
+```
+
+---
+
+## Logging Levels
+
+### DEBUG
+
+Used for internal calculations and troubleshooting.
+
+Examples:
+
+- Quartile thresholds
+- Intermediate calculations
+
+### INFO
+
+Used for normal processing milestones.
+
+Examples:
+
+- Data successfully loaded
+- Schema validation completed
+- File saved successfully
+- Visualisation generated
+
+### WARNING
+
+Used for recoverable data-quality issues.
+
+Examples:
+
+- Duplicate rows removed
+- Outliers detected
+- Missing values imputed
+
+### ERROR
+
+Used for failures that prevent successful execution.
+
+Examples:
+
+- Missing files
+- Invalid schema
+- Processing failures
+- Invalid command parameters
+
+---
+
+# Running the Project
+
+Execute the project in the following order:
+
+## Step 1 – Build Clean Dataset
+
+```bash
+python pipeline.py
+```
+
+Creates:
+
+```text
+data/traffic_cleaned.csv
+```
+
+---
+
+## Step 2 – Feature Engineering
+
+```bash
+python feature_engineering.py
+```
+
+Creates:
+
+```text
+data/traffic_ml_ready.csv
+```
+
+---
+
+## Step 3 – Generate Visualisations
+
+```bash
+python visualisations.py
+```
+
+Creates:
+
+```text
+figures/traffic_by_hour.png
 
 figures/weekday_vs_weekend.png
 
-Interpretation:
-
-Average traffic volume is higher on weekdays than weekends. This suggests that commuting, work activities and school travel are major contributors to traffic demand across the interstate corridor.
-
----
-
-### Figure 3: Distribution of Congestion Levels
-
-File:
-
-figures/congestion_distribution.png
-
-Interpretation:
-
-The congestion categories appear relatively balanced because they were created using quartile-based thresholds derived from traffic volume. This confirms that the feature engineering process successfully generated a data-driven target suitable for classification modelling.
+figures/monthly_traffic_pattern.png
+```
 
 ---
 
-## Logging
+## Step 4 – Run the Analytics Application
 
-Logging was implemented throughout the project using Python's logging module.
+Example:
 
-Log files include:
-
-- logs/pipeline.log
-- logs/feature_engineering.log
-- logs/visualisations.log
-
-Logging provides:
-
-- Auditability
-- Traceability
-- Error reporting
-- Reproducibility
-
-The project uses:
-
-- INFO messages for successful operations
-- WARNING messages for cleaning and imputation actions
-- DEBUG messages for intermediate calculations
-- ERROR messages for failures and exceptions
+```bash
+python traffic_app.py compare
+```
 
 ---
 
-## Running the Project
+# Reproducibility
 
-Step 1:
-python pipeline.py
+This project follows reproducible analytics principles by:
 
-Step 2:
-python feature_engineering.py
+- Separating data processing stages into individual scripts.
+- Maintaining structured project folders.
+- Logging all major processing events.
+- Using schema validation before transformations.
+- Saving intermediate and final outputs.
+- Applying version control using Git.
+- Documenting execution steps in the README.
 
-Step 3:
-python visualisations.py
-
-
-Generated outputs include:
-traffic_cleaned.csv
-traffic_ml_ready.csv
-visualisation figures
-log files
-
-
+The workflow can be executed repeatedly on the raw dataset to generate consistent outputs and analysis results.

@@ -10,3 +10,15 @@
 2026-11-22 20:49:45,021 - INFO - Figure saved successfully: figures/weekday_vs_weekend.png
 2026-11-22 20:49:45,200 - INFO - Figure saved successfully: figures/monthly_traffic_pattern.png
 2026-11-22 20:49:45,200 - INFO - All visualisations completed successfully.
+2026-11-22 20:55:49,167 - INFO - Visualisation process started.
+2026-11-22 20:55:49,306 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:55:49,544 - INFO - Figure saved successfully: figures/traffic_by_hour.png
+2026-11-22 20:55:49,689 - INFO - Figure saved successfully: figures/weekday_vs_weekend.png
+2026-11-22 20:55:49,854 - INFO - Figure saved successfully: figures/monthly_traffic_pattern.png
+2026-11-22 20:55:49,855 - INFO - All visualisations completed successfully.
+2026-11-22 21:10:32,525 - INFO - __main__ - Visualisation process started.
+2026-11-22 21:10:32,668 - INFO - __main__ - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 21:10:32,904 - INFO - __main__ - Figure saved successfully: figures/traffic_by_hour.png
+2026-11-22 21:10:33,055 - INFO - __main__ - Figure saved successfully: figures/weekday_vs_weekend.png
+2026-11-22 21:10:33,224 - INFO - __main__ - Figure saved successfully: figures/monthly_traffic_pattern.png
+2026-11-22 21:10:33,224 - INFO - __main__ - All visualisations completed successfully.

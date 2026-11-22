@@ -1,0 +1,41 @@
+2026-11-22 20:55:54,650 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:55:54,650 - INFO - Dataset schema validation passed.
+2026-11-22 20:55:54,650 - INFO - Command=compare
+2026-11-22 20:56:45,274 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:56:45,275 - INFO - Dataset schema validation passed.
+2026-11-22 20:56:45,275 - INFO - Command=weather Argument=Rain
+2026-11-22 20:56:52,743 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:56:52,743 - INFO - Dataset schema validation passed.
+2026-11-22 20:56:52,743 - INFO - Command=travel
+2026-11-22 20:57:01,637 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:57:01,637 - INFO - Dataset schema validation passed.
+2026-11-22 20:57:01,638 - INFO - Command=high_traffic
+2026-11-22 20:57:09,531 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:57:09,531 - INFO - Dataset schema validation passed.
+2026-11-22 20:57:09,531 - INFO - Command=query_datetime Argument=2017-01-15 08:00:00
+2026-11-22 20:57:17,069 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:57:17,069 - INFO - Dataset schema validation passed.
+2026-11-22 20:57:17,070 - INFO - Command=query_datetime Argument=2017-09-15 08:00:00
+2026-11-22 20:57:22,997 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:57:22,998 - INFO - Dataset schema validation passed.
+2026-11-22 20:57:22,998 - INFO - Command=query_datetime Argument=2017-09-153 08:00:00
+2026-11-22 20:57:23,007 - ERROR - Invalid datetime supplied: 2017-09-153 08:00:00
+2026-11-22 21:10:42,406 - INFO - __main__ - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 21:10:42,407 - INFO - __main__ - Dataset schema validation passed.
+2026-11-22 21:10:42,407 - INFO - __main__ - Command=compare
+2026-11-22 21:10:49,654 - INFO - __main__ - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 21:10:49,655 - INFO - __main__ - Dataset schema validation passed.
+2026-11-22 21:10:49,655 - INFO - __main__ - Command=query_datetime Argument=2017-09-153 08:00:00
+2026-11-22 21:10:49,657 - ERROR - __main__ - Invalid datetime supplied: 2017-09-153 08:00:00
+2026-11-22 21:10:55,415 - INFO - __main__ - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 21:10:55,416 - INFO - __main__ - Dataset schema validation passed.
+2026-11-22 21:10:55,416 - INFO - __main__ - Command=query_datetime Argument=2017-09-15 08:00:00
+2026-11-22 21:11:01,171 - INFO - __main__ - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 21:11:01,172 - INFO - __main__ - Dataset schema validation passed.
+2026-11-22 21:11:01,172 - INFO - __main__ - Command=high_traffic
+2026-11-22 21:11:06,551 - INFO - __main__ - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 21:11:06,551 - INFO - __main__ - Dataset schema validation passed.
+2026-11-22 21:11:06,552 - INFO - __main__ - Command=travel
+2026-11-22 21:11:11,614 - INFO - __main__ - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 21:11:11,614 - INFO - __main__ - Dataset schema validation passed.
+2026-11-22 21:11:11,615 - INFO - __main__ - Command=weather Argument=Rain

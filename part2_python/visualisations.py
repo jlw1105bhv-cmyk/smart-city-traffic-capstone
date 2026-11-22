@@ -8,14 +8,9 @@ import sys
 # LOGGING CONFIGURATION
 # =====================================================
 
-os.makedirs("logs", exist_ok=True)
+from utils.logger_config import setup_logging
 os.makedirs("figures", exist_ok=True)
 
-logging.basicConfig(
-    filename="logs/visualisations.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
 
 logger = logging.getLogger(__name__)
 
@@ -190,6 +185,10 @@ def monthly_traffic_pattern(df):
 # =====================================================
 
 def main():
+
+    setup_logging(
+        "logs/visualisations.log"
+    )
 
     try:
 

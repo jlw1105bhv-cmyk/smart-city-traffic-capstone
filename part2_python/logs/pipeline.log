@@ -34,3 +34,21 @@
 2026-11-22 20:49:36,196 - WARNING - Imputed 1 rainfall outliers (>9000 mm) using median=0.0
 2026-11-22 20:49:36,346 - INFO - Cleaned data saved to data/traffic_cleaned.csv
 2026-11-22 20:49:36,346 - INFO - Pipeline completed successfully.
+2026-11-22 20:55:46,727 - INFO - Pipeline started.
+2026-11-22 20:55:46,782 - INFO - File loaded successfully. Rows=48204, Columns=9
+2026-11-22 20:55:46,782 - INFO - Schema validation successful.
+2026-11-22 20:55:46,786 - WARNING - Standardised holiday categories. Unique values before=11, after=12
+2026-11-22 20:55:46,814 - WARNING - Removed 17 duplicate rows.
+2026-11-22 20:55:46,833 - WARNING - Imputed 10 temperature outliers using median value 282.46
+2026-11-22 20:55:46,835 - WARNING - Imputed 1 rainfall outliers (>9000 mm) using median=0.0
+2026-11-22 20:55:46,970 - INFO - Cleaned data saved to data/traffic_cleaned.csv
+2026-11-22 20:55:46,970 - INFO - Pipeline completed successfully.
+2026-11-22 21:10:09,234 - INFO - __main__ - Pipeline started.
+2026-11-22 21:10:09,289 - INFO - __main__ - File loaded successfully. Rows=48204, Columns=9
+2026-11-22 21:10:09,290 - INFO - __main__ - Schema validation successful.
+2026-11-22 21:10:09,295 - WARNING - __main__ - Standardised holiday categories. Unique values before=11, after=12
+2026-11-22 21:10:09,323 - WARNING - __main__ - Removed 17 duplicate rows.
+2026-11-22 21:10:09,343 - WARNING - __main__ - Imputed 10 temperature outliers using median value 282.46
+2026-11-22 21:10:09,346 - WARNING - __main__ - Imputed 1 rainfall outliers (>9000 mm) using median=0.0
+2026-11-22 21:10:09,485 - INFO - __main__ - Cleaned data saved to data/traffic_cleaned.csv
+2026-11-22 21:10:09,485 - INFO - __main__ - Pipeline completed successfully.

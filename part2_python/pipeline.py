@@ -8,13 +8,7 @@ import sys
 # LOGGING CONFIGURATION
 # =====================================================
 
-os.makedirs("logs", exist_ok=True)
-
-logging.basicConfig(
-    filename="logs/pipeline.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
+from utils.logger_config import setup_logging
 
 logger = logging.getLogger(__name__)
 
@@ -287,6 +281,8 @@ def save_data(df, filepath):
 
 def main():
 
+    setup_logging("logs/pipeline.log")
+
     try:
 
         logger.info("Pipeline started.")
@@ -314,7 +310,9 @@ def main():
             "data/traffic_cleaned.csv"
         )
 
-        logger.info("Pipeline completed successfully.")
+        logger.info(
+            "Pipeline completed successfully."
+        )
 
     except Exception:
 
@@ -323,7 +321,7 @@ def main():
             exc_info=True
         )
 
-        sys.exit()
+        sys.exit(1)
 
 
 if __name__ == "__main__":

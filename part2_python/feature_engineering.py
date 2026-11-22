@@ -8,13 +8,7 @@ import sys
 # LOGGING CONFIGURATION
 # =====================================================
 
-os.makedirs("logs", exist_ok=True)
-
-logging.basicConfig(
-    filename="logs/feature_engineering.log",
-    level=logging.INFO,   # Change to DEBUG when needed
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
+from utils.logger_config import setup_logging
 
 logger = logging.getLogger(__name__)
 
@@ -332,6 +326,11 @@ def engineer_features(df):
 # =====================================================
 
 def main():
+
+    setup_logging(
+        "logs/feature_engineering.log",
+        level=logging.INFO
+    )
 
     try:
 
