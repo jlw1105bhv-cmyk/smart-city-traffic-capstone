@@ -1,0 +1,12 @@
+2026-11-22 20:47:07,188 - INFO - Visualisation process started.
+2026-11-22 20:47:07,320 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:47:08,391 - INFO - Figure saved successfully: figures/traffic_by_hour.png
+2026-11-22 20:47:08,535 - INFO - Figure saved successfully: figures/weekday_vs_weekend.png
+2026-11-22 20:47:08,845 - INFO - Figure saved successfully: figures/congestion_distribution.png
+2026-11-22 20:47:08,846 - INFO - All visualisations completed successfully.
+2026-11-22 20:49:44,486 - INFO - Visualisation process started.
+2026-11-22 20:49:44,628 - INFO - Dataset loaded successfully. Rows=48187, Columns=32
+2026-11-22 20:49:44,868 - INFO - Figure saved successfully: figures/traffic_by_hour.png
+2026-11-22 20:49:45,021 - INFO - Figure saved successfully: figures/weekday_vs_weekend.png
+2026-11-22 20:49:45,200 - INFO - Figure saved successfully: figures/monthly_traffic_pattern.png
+2026-11-22 20:49:45,200 - INFO - All visualisations completed successfully.

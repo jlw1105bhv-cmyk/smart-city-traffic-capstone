@@ -16,3 +16,39 @@
 2026-11-22 20:20:15,710 - INFO - Dataset AFTER feature engineering: 48187 rows, 32 columns
 2026-11-22 20:20:16,056 - INFO - ML-ready dataset saved to data/traffic_ml_ready.csv
 2026-11-22 20:20:16,056 - INFO - Feature engineering completed successfully.
+2026-11-22 20:46:50,335 - INFO - Feature engineering pipeline started.
+2026-11-22 20:46:50,401 - INFO - Clean dataset loaded successfully. Rows=48187, Columns=10
+2026-11-22 20:46:50,402 - INFO - Dataset BEFORE feature engineering: 48187 rows, 10 columns
+2026-11-22 20:46:50,402 - INFO - Creating time features.
+2026-11-22 20:46:50,421 - INFO - Created hour, day_of_week, month and is_weekend.
+2026-11-22 20:46:50,421 - INFO - Creating cyclical time features.
+2026-11-22 20:46:50,422 - INFO - Created hour_sin and hour_cos.
+2026-11-22 20:46:50,422 - INFO - Creating weather features.
+2026-11-22 20:46:50,425 - INFO - Created weather indicator variables.
+2026-11-22 20:46:50,425 - INFO - Encoding weather categories.
+2026-11-22 20:46:50,427 - INFO - Created 11 encoded weather columns.
+2026-11-22 20:46:50,427 - INFO - Scaling numerical features.
+2026-11-22 20:46:50,429 - INFO - Created temp_scaled and traffic_volume_scaled.
+2026-11-22 20:46:50,429 - INFO - Creating congestion category.
+2026-11-22 20:46:50,440 - INFO - Created congestion_level target.
+2026-11-22 20:46:50,440 - INFO - Dataset AFTER feature engineering: 48187 rows, 32 columns
+2026-11-22 20:46:50,784 - INFO - ML-ready dataset saved to data/traffic_ml_ready.csv
+2026-11-22 20:46:50,784 - INFO - Feature engineering completed successfully.
+2026-11-22 20:49:40,622 - INFO - Feature engineering pipeline started.
+2026-11-22 20:49:40,690 - INFO - Clean dataset loaded successfully. Rows=48187, Columns=10
+2026-11-22 20:49:40,690 - INFO - Dataset BEFORE feature engineering: 48187 rows, 10 columns
+2026-11-22 20:49:40,690 - INFO - Creating time features.
+2026-11-22 20:49:40,709 - INFO - Created hour, day_of_week, month and is_weekend.
+2026-11-22 20:49:40,709 - INFO - Creating cyclical time features.
+2026-11-22 20:49:40,711 - INFO - Created hour_sin and hour_cos.
+2026-11-22 20:49:40,711 - INFO - Creating weather features.
+2026-11-22 20:49:40,713 - INFO - Created weather indicator variables.
+2026-11-22 20:49:40,713 - INFO - Encoding weather categories.
+2026-11-22 20:49:40,716 - INFO - Created 11 encoded weather columns.
+2026-11-22 20:49:40,716 - INFO - Scaling numerical features.
+2026-11-22 20:49:40,718 - INFO - Created temp_scaled and traffic_volume_scaled.
+2026-11-22 20:49:40,718 - INFO - Creating congestion category.
+2026-11-22 20:49:40,729 - INFO - Created congestion_level target.
+2026-11-22 20:49:40,729 - INFO - Dataset AFTER feature engineering: 48187 rows, 32 columns
+2026-11-22 20:49:41,072 - INFO - ML-ready dataset saved to data/traffic_ml_ready.csv
+2026-11-22 20:49:41,072 - INFO - Feature engineering completed successfully.
