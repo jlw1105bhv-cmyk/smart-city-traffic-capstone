@@ -1,0 +1,23 @@
+artifact_path: file:C:/Users/JohnTan/Documents/GitHub/smart-city-traffic-capstone/part3_machine_learning/mlruns/1/models/m-c04453d4fb834058a2adce94386a0fa1/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.13.14
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.17.0
+model_id: m-c04453d4fb834058a2adce94386a0fa1
+model_size_bytes: 16122
+model_uuid: m-c04453d4fb834058a2adce94386a0fa1
+prompts: null
+run_id: 425cb92a7dca47018a76c3418adc4e7d
+utc_time_created: '2026-11-24 13:50:19.733581'
