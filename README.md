@@ -576,3 +576,314 @@ This project follows reproducible analytics principles by:
 - Documenting execution steps in the README.
 
 The workflow can be executed repeatedly on the raw dataset to generate consistent outputs and analysis results.
+
+
+
+# Tools and Technologies
+
+The project was developed using the following technologies:
+
+## Programming Language
+
+- Python 3.x
+
+## Python Libraries
+
+- Pandas
+- NumPy
+- Matplotlib
+- Logging
+- Argparse
+
+## Development Tools
+
+- Git
+- GitHub
+- Visual Studio Code
+
+---
+
+# Machine Learning Features
+
+Although a predictive machine learning model was not trained as part of this project, the dataset was prepared for future machine learning applications through feature engineering.
+
+The machine-learning-ready dataset contains:
+
+## Time Features
+
+- hour
+- day_of_week
+- month
+- is_weekend
+
+## Cyclical Features
+
+- hour_sin
+- hour_cos
+
+## Weather Features
+
+- is_raining
+- is_snowing
+- bad_weather
+
+## Encoded Variables
+
+One-hot encoded weather categories derived from:
+
+- weather_main
+
+## Scaled Features
+
+- temp_scaled
+- traffic_volume_scaled
+
+## Target Variable
+
+A congestion classification target was created:
+
+```text
+congestion_level
+```
+
+Categories:
+
+- Low
+- Medium
+- High
+- Very High
+
+These categories were derived using quartile-based thresholds and provide a balanced target suitable for future classification models.
+
+---
+
+# Logging Configuration
+
+The project uses Python's logging module to provide traceability, auditing and reproducibility.
+
+Each module creates a logger using:
+
+```python
+logger = logging.getLogger(__name__)
+```
+
+A shared logging configuration is implemented in:
+
+```text
+utils/logger_config.py
+```
+
+The logging system writes messages to:
+
+- Console output
+- Dedicated log files
+
+## Log Format
+
+Each log record includes:
+
+- Timestamp
+- Log Level
+- Module Name
+- Message
+
+Example:
+
+```text
+2026-11-21 14:05:18 - INFO - pipeline - Pipeline started.
+```
+
+## Logging Levels
+
+### DEBUG
+
+Used for detailed internal calculations.
+
+Examples:
+
+- Quartile thresholds
+- Intermediate calculations
+
+### INFO
+
+Used for normal processing events.
+
+Examples:
+
+- Dataset loaded
+- Features created
+- Figure saved
+
+### WARNING
+
+Used for recoverable issues.
+
+Examples:
+
+- Duplicate records removed
+- Values imputed
+- Outliers detected
+
+### ERROR
+
+Used when processing cannot continue.
+
+Examples:
+
+- Missing files
+- Invalid schema
+- Invalid user input
+
+## Log File Locations
+
+| Log File | Purpose |
+|-----------|----------|
+| logs/pipeline.log | Pipeline execution |
+| logs/feature_engineering.log | Feature engineering |
+| logs/visualisations.log | Figure generation |
+| logs/traffic_app.log | Application commands and errors |
+
+---
+
+# Running the Project
+
+Execute the scripts in the following sequence.
+
+## Step 1 - Data Cleaning Pipeline
+
+```bash
+python pipeline.py
+```
+
+Output:
+
+```text
+data/traffic_cleaned.csv
+```
+
+---
+
+## Step 2 - Feature Engineering
+
+```bash
+python feature_engineering.py
+```
+
+Output:
+
+```text
+data/traffic_ml_ready.csv
+```
+
+---
+
+## Step 3 - Generate Visualisations
+
+```bash
+python visualisations.py
+```
+
+Outputs:
+
+```text
+figures/traffic_by_hour.png
+
+figures/weekday_vs_weekend.png
+
+figures/monthly_traffic_pattern.png
+```
+
+---
+
+## Step 4 - Run the Mini Analytics Application
+
+Examples:
+
+```bash
+python traffic_app.py compare
+```
+
+```bash
+python traffic_app.py travel
+```
+
+```bash
+python traffic_app.py weather --condition Rain
+```
+
+```bash
+python traffic_app.py query_datetime --datetime "2017-01-15 08:00:00"
+```
+
+---
+
+# Reproducing Results
+
+To reproduce the complete analysis:
+
+1. Download the Metro Interstate Traffic Volume dataset.
+2. Place the CSV file inside the `data/` folder.
+3. Run:
+
+```bash
+python pipeline.py
+```
+
+4. Run:
+
+```bash
+python feature_engineering.py
+```
+
+5. Run:
+
+```bash
+python visualisations.py
+```
+
+6. Review:
+
+```text
+traffic_cleaned.csv
+
+traffic_ml_ready.csv
+
+generated figures
+
+log files
+```
+
+7. Use the command-line application for interactive analysis.
+
+Following these steps will reproduce the complete workflow and outputs.
+
+---
+
+# Assumptions and Limitations
+
+## Assumptions
+
+- The input dataset contains the expected schema.
+- Timestamps are valid after cleaning.
+- Outliers can be reasonably corrected using median imputation.
+- Quartile-based congestion categories are representative of traffic conditions.
+
+## Limitations
+
+- No predictive machine learning model was trained.
+- Results are based on a single traffic dataset.
+- Weather effects on traffic were explored descriptively rather than through statistical modelling.
+- The command-line application supports a limited set of predefined queries.
+- Traffic patterns may not generalize beyond the period and location covered by the dataset.
+
+---
+
+# Future Enhancements
+
+Potential improvements include:
+
+- Traffic volume forecasting using machine learning.
+- Congestion prediction models.
+- Interactive dashboard development using Power BI or Streamlit.
+- Automated scheduling of data refresh and analytics pipelines.
+- Additional weather and seasonal feature engineering.
