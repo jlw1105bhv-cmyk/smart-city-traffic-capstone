@@ -1,0 +1,11 @@
+antecedents,consequents,support,confidence,lift
+"frozenset({'Day_Weekday', 'Congestion_Low'})","frozenset({'Weather_Bad Weather', 'Time_Night'})",0.036773403615082904,0.21761021736460764,3.635916624184587
+"frozenset({'Weather_Bad Weather', 'Time_Night'})","frozenset({'Day_Weekday', 'Congestion_Low'})",0.036773403615082904,0.6144244105409153,3.6359166241845866
+"frozenset({'Congestion_Low', 'Weather_Normal Weather'})","frozenset({'Day_Weekend', 'Time_Night'})",0.05011725154087202,0.2638767482517483,3.629868360835568
+"frozenset({'Day_Weekend', 'Time_Night'})","frozenset({'Congestion_Low', 'Weather_Normal Weather'})",0.05011725154087202,0.6894090779332002,3.6298683608355677
+frozenset({'Congestion_Low'}),"frozenset({'Day_Weekend', 'Time_Night'})",0.06441571378172536,0.25765750809330124,3.5443169690242384
+"frozenset({'Day_Weekend', 'Time_Night'})",frozenset({'Congestion_Low'}),0.06441571378172536,0.8860976306023409,3.5443169690242384
+"frozenset({'Day_Weekday', 'Congestion_Low', 'Weather_Normal Weather'})",frozenset({'Time_Night'}),0.11513478739079004,0.9032888309996743,3.5442373503282556
+frozenset({'Time_Night'}),"frozenset({'Day_Weekday', 'Congestion_Low', 'Weather_Normal Weather'})",0.11513478739079004,0.45175474309909613,3.5442373503282556
+"frozenset({'Day_Weekend', 'Weather_Normal Weather', 'Time_Night'})",frozenset({'Congestion_Low'}),0.05011725154087202,0.8826754385964913,3.5306284850708995
+frozenset({'Congestion_Low'}),"frozenset({'Day_Weekend', 'Weather_Normal Weather', 'Time_Night'})",0.05011725154087202,0.20046484601975595,3.530628485070899
