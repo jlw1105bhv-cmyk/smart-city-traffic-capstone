@@ -1,0 +1,7 @@
+Day_Type,Recommended_Hour,Average_Traffic,Recommendation
+Weekday,02:00,301.98,"For a weekday journey, consider travelling between 02:00 and 03:00, when historical traffic volumes average approximately 302 vehicles and risk conditions are low."
+Weekday,03:00,362.29,"For a weekday journey, consider travelling between 03:00 and 04:00, when historical traffic volumes average approximately 362 vehicles and risk conditions are low."
+Weekday,01:00,396.91,"For a weekday journey, consider travelling between 01:00 and 02:00, when historical traffic volumes average approximately 397 vehicles and risk conditions are low."
+Weekend,04:00,375.42,"For a weekend journey, consider travelling between 04:00 and 05:00, when historical traffic volumes average approximately 375 vehicles and risk conditions are low."
+Weekend,03:00,393.61,"For a weekend journey, consider travelling between 03:00 and 04:00, when historical traffic volumes average approximately 394 vehicles and risk conditions are low."
+Weekend,02:00,611.17,"For a weekend journey, consider travelling between 02:00 and 03:00, when historical traffic volumes average approximately 611 vehicles and risk conditions are low."

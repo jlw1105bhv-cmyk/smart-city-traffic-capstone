@@ -1,0 +1,4 @@
+Version,Model,MAE,R2,Status
+v1.0,Linear Regression,812.45,0.62,Baseline
+v2.0,Random Forest Regressor,342.88,0.91,Production Candidate
+v3.0,LSTM,549.64,0.84,Experimental
