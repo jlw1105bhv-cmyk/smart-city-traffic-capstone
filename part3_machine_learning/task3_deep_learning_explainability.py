@@ -1,6 +1,17 @@
 import os
 import numpy as np
 import pandas as pd
+import logging
+
+from utils.logger_config import (
+    setup_logging
+)
+
+setup_logging(
+    "logs/task3_deep_learning.log"
+)
+
+logger = logging.getLogger(__name__)
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import (
@@ -41,13 +52,15 @@ os.makedirs(
 # LOAD DATA
 # =====================================================
 
-print("Loading dataset...")
+logger.info(
+    "Loading dataset..."
+)
 
 df = pd.read_csv(
     "data/traffic_ml_ready.csv"
 )
 
-print(
+logger.info(
     f"Dataset: "
     f"{df.shape[0]} rows, "
     f"{df.shape[1]} columns"
@@ -160,7 +173,9 @@ y_test = y_seq[split_index:]
 # BUILD LSTM
 # =====================================================
 
-print("\nTraining LSTM...")
+logger.info(
+    "Training LSTM model."
+)
 
 model = Sequential([
 
@@ -222,15 +237,13 @@ r2 = r2_score(
     y_pred
 )
 
-print("\nLSTM RESULTS")
-
-print(
-    f"MAE: {mae:.2f}"
+logger.info(
+    f"LSTM evaluation complete. "
+    f"MAE={mae:.2f}, "
+    f"R2={r2:.4f}"
 )
 
-print(
-    f"R²: {r2:.4f}"
-)
+
 
 # =====================================================
 # SAVE RESULTS
@@ -259,9 +272,8 @@ lstm_results.to_csv(
 # SHAP EXPLAINABILITY
 # =====================================================
 
-print(
-    "\nTraining Random Forest "
-    "for SHAP..."
+logger.info(
+    "Training Random Forest model for SHAP explainability."
 )
 
 X_train_rf, X_test_rf, y_train_rf, y_test_rf = train_test_split(
@@ -320,6 +332,11 @@ plt.savefig(
     "figures/shap_summary_plot.png"
 )
 
+logger.info(
+    "SHAP summary plot saved."
+)
+
+
 plt.close()
 
 # =====================================================
@@ -356,6 +373,10 @@ importance_df.to_csv(
     index=False
 )
 
+logger.info(
+    "SHAP feature importance saved."
+)
+
 print(
     "\nTop SHAP Features"
 )
@@ -364,22 +385,18 @@ print(
     importance_df.head(10)
 )
 
-print(
-    "\nOutputs Saved:"
+logger.info(
+    "LSTM results saved."
 )
 
-print(
-    "results/lstm_results.csv"
+logger.info(
+    "SHAP feature importance saved."
 )
 
-print(
-    "results/shap_feature_importance.csv"
+logger.info(
+    "SHAP summary plot saved."
 )
 
-print(
-    "figures/shap_summary_plot.png"
-)
-
-print(
-    "\nTask 3 completed successfully."
+logger.info(
+    "Task 3 completed successfully."
 )

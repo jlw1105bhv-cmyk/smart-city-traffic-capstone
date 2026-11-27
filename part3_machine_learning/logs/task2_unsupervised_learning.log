@@ -1,0 +1,7 @@
+2026-11-27 22:35:25,824 - INFO - __main__ - Loading dataset...
+2026-11-27 22:35:25,953 - INFO - __main__ - Dataset loaded: 48187 rows, 32 columns
+2026-11-27 22:35:28,196 - INFO - __main__ - K-Means clustering completed.
+2026-11-27 22:35:28,196 - INFO - __main__ - Cluster summary saved.
+2026-11-27 22:35:28,377 - INFO - __main__ - 10 association rules saved.
+2026-11-27 22:35:28,380 - INFO - __main__ - Association rules saved.
+2026-11-27 22:35:28,381 - INFO - __main__ - Task 2 completed successfully.

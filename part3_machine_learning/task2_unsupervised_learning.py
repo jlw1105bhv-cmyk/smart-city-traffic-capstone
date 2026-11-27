@@ -1,6 +1,17 @@
 import os
 import pandas as pd
 import numpy as np
+import logging
+
+from utils.logger_config import (
+    setup_logging
+)
+
+setup_logging(
+    "logs/task2_unsupervised_learning.log"
+)
+
+logger = logging.getLogger(__name__)
 
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
@@ -23,13 +34,15 @@ os.makedirs(
 # LOAD DATA
 # =====================================================
 
-print("Loading dataset...")
+logger.info(
+    "Loading dataset..."
+)
 
 df = pd.read_csv(
     "data/traffic_ml_ready.csv"
 )
 
-print(
+logger.info(
     f"Dataset loaded: "
     f"{df.shape[0]} rows, "
     f"{df.shape[1]} columns"
@@ -143,6 +156,14 @@ print(cluster_summary)
 
 cluster_summary.to_csv(
     "results/kmeans_cluster_summary.csv"
+)
+
+logger.info(
+    "K-Means clustering completed."
+)
+
+logger.info(
+    "Cluster summary saved."
 )
 
 # =====================================================
@@ -325,6 +346,10 @@ top_rules.to_csv(
     index=False
 )
 
+logger.info(
+    f"{len(top_rules)} association rules saved."
+)
+
 # =====================================================
 # PLAIN LANGUAGE RULE INTERPRETATION
 # =====================================================
@@ -360,16 +385,10 @@ for i, row in top_rules.head(5).iterrows():
 # SAVE OUTPUTS
 # =====================================================
 
-print("\nResults saved:")
-
-print(
-    "results/kmeans_cluster_summary.csv"
+logger.info(
+    "Association rules saved."
 )
 
-print(
-    "results/association_rules.csv"
-)
-
-print(
-    "\nTask 2 completed successfully."
+logger.info(
+    "Task 2 completed successfully."
 )

@@ -1,5 +1,16 @@
 import os
 import pandas as pd
+import logging
+
+from utils.logger_config import (
+    setup_logging
+)
+
+setup_logging(
+    "logs/task6_monitoring.log"
+)
+
+logger = logging.getLogger(__name__)
 
 os.makedirs(
     "results",
@@ -32,6 +43,23 @@ if drift_percentage > 10:
 
     status = "ALERT"
 
+logger.info(
+    f"Drift percentage: "
+    f"{drift_percentage:.2f}%"
+)
+
+if status == "ALERT":
+
+    logger.warning(
+        "Monitoring alert triggered."
+    )
+
+else:
+
+    logger.info(
+        "Monitoring check passed."
+    )
+
 monitoring_report = pd.DataFrame({
 
     "Metric":
@@ -59,6 +87,10 @@ monitoring_report.to_csv(
     "results/monitoring_report.csv",
 
     index=False
+)
+
+logger.info(
+    "Monitoring report saved."
 )
 
 print(monitoring_report)
@@ -91,6 +123,10 @@ alert_status.to_csv(
     "results/drift_alert_status.csv",
 
     index=False
+)
+
+logger.info(
+    "Alert status report saved."
 )
 
 print("\nALERT STATUS")

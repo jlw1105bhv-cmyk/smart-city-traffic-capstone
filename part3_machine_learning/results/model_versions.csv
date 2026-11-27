@@ -1,4 +1,6 @@
-Version,Model,MAE,R2,Status
-v1.0,Linear Regression,812.45,0.62,Baseline
-v2.0,Random Forest Regressor,342.88,0.91,Production Candidate
-v3.0,LSTM,549.64,0.84,Experimental
+Version,Model,Problem_Type,MAE,R2,Accuracy,Precision,Recall,F1,ROC_AUC,Status
+v1.0,Linear Regression,Regression,812.45,0.62,,,,,,Baseline
+v2.0,Random Forest Regressor,Regression,342.88,0.91,,,,,,Production Candidate
+v3.0,LSTM,Regression,549.64,0.8435,,,,,,Experimental
+v1.0,Logistic Regression,Classification,,,0.95,0.93,0.89,0.91,0.97,Baseline
+v2.0,Random Forest Classifier,Classification,,,0.98,0.97,0.95,0.96,0.99,Production Candidate

@@ -1,6 +1,18 @@
 import os
 import pandas as pd
 import numpy as np
+import logging
+
+from utils.logger_config import (
+    setup_logging
+)
+
+setup_logging(
+    "logs/task1_supervised_learning.log"
+)
+
+
+logger = logging.getLogger(__name__)
 
 from sklearn.model_selection import train_test_split
 
@@ -31,14 +43,16 @@ from sklearn.metrics import (
 # LOAD DATA
 # =====================================================
 
-print("Loading dataset...")
+logger.info(
+    "Loading dataset..."
+)
 
 df = pd.read_csv(
     "data/traffic_ml_ready.csv",
     parse_dates=["date_time"]
 )
 
-print(
+logger.info(
     f"Dataset loaded: "
     f"{df.shape[0]} rows, "
     f"{df.shape[1]} columns"
@@ -48,7 +62,9 @@ print(
 # FEATURE PREPARATION
 # =====================================================
 
-print("\nPreparing features...")
+logger.info(
+    "Preparing features..."
+)
 
 # Holiday flag
 
@@ -149,7 +165,10 @@ df["high_risk"] = (
 # USE EXISTING WEATHER FEATURES FROM PART 2
 # =====================================================
 
-print("\nChecking engineered weather features...")
+logger.info(
+    "Checking engineered weather features..."
+)
+
 
 weather_columns = [
 
@@ -167,7 +186,10 @@ weather_columns = [
 
 ]
 
-print("\nWeather features detected:")
+logger.info(
+    f"Weather features detected: "
+    f"{weather_columns}"
+)
 
 for col in weather_columns:
     print(f"  {col}")
@@ -184,9 +206,8 @@ for col in weather_columns:
 
         df[col] = df[col].astype(int)
 
-print(
-    f"\nUsing {len(weather_columns)} "
-    f"weather encoded features."
+logger.info(
+    f"Using {len(weather_columns)} weather encoded features."
 )
 
 # =====================================================
@@ -205,7 +226,9 @@ if duplicate_columns:
         f"{duplicate_columns}"
     )
 
-print("No duplicate columns detected.")
+logger.info(
+    "No duplicate columns detected."
+)
 
 # =====================================================
 # COMMON FEATURE SET
@@ -240,9 +263,11 @@ feature_columns = [
 
 ] + weather_columns
 
-print(
+logger.info(
     f"{len(feature_columns)} features selected."
 )
+
+
 
 # =====================================================
 # FEATURE VALIDATION
@@ -265,9 +290,9 @@ if missing_features:
         f"{missing_features}"
     )
 
-print(
-    f"All {len(feature_columns)} "
-    f"features validated."
+
+logger.info(
+    f"All {len(feature_columns)} features validated."
 )
 
 # =====================================================
@@ -365,6 +390,10 @@ classification_results = pd.DataFrame({
         roc_auc_score(y_test, rfc_prob)
     ]
 })
+
+logger.info(
+    "Classification models trained successfully."
+)
 
 print("\nCLASSIFICATION COMPARISON")
 print(classification_results.round(4))
@@ -469,6 +498,10 @@ regression_results = pd.DataFrame({
     ]
 })
 
+logger.info(
+    "Regression models trained successfully."
+)
+
 print("\nREGRESSION COMPARISON")
 print(regression_results.round(4))
 
@@ -502,14 +535,14 @@ regression_results.to_csv(
     index=False
 )
 
-print("\nComparison results saved:")
-
-print(
-    "- results/classification_model_comparison.csv"
+logger.info(
+    "Classification comparison saved."
 )
 
-print(
-    "- results/regression_model_comparison.csv"
+logger.info(
+    "Regression comparison saved."
 )
 
-print("\nTask 1 completed successfully.")
+logger.info(
+    "Task 1 completed successfully."
+)

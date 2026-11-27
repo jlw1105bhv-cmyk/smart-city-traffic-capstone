@@ -3,6 +3,17 @@ import mlflow
 import mlflow.sklearn
 import pandas as pd
 import numpy as np
+import logging
+
+from utils.logger_config import (
+    setup_logging
+)
+
+setup_logging(
+    "logs/task4_mlflow_experiment_tracking.log"
+)
+
+logger = logging.getLogger(__name__)
 
 from sklearn.model_selection import train_test_split
 
@@ -31,7 +42,7 @@ from sklearn.metrics import (
 # LOAD DATA
 # =====================================================
 
-print("Loading dataset...")
+logger.info("Loading dataset...")
 os.makedirs(
     "results",
     exist_ok=True
@@ -302,9 +313,10 @@ with mlflow.start_run(
 
     except Exception as e:
 
-        print(
+        logger.warning(
             f"Model artifact not logged: {e}"
         )
+
 
 # =====================================================
 # RANDOM FOREST REGRESSOR
@@ -408,9 +420,10 @@ with mlflow.start_run(
 
     except Exception as e:
 
-        print(
+        logger.warning(
             f"Model artifact not logged: {e}"
         )
+
 
 # =====================================================
 # SAVE EXPERIMENT SUMMARY
@@ -425,18 +438,15 @@ experiment_df.to_csv(
     index=False
 )
 
-print(
-    "\nExperiments logged successfully."
+logger.info(
+    "Experiments logged successfully."
 )
 
-print(
-    "\nExperiment summary saved:"
-)
-
-print(
+logger.info(
+    "Experiment summary saved to "
     "results/mlflow_experiment_summary.csv"
 )
 
-print(
-    "\nTask 4 completed successfully."
+logger.info(
+    "Task 4 completed successfully."
 )

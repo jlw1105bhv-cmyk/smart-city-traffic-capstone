@@ -1,0 +1,14 @@
+2026-11-27 22:34:58,073 - INFO - __main__ - Loading dataset...
+2026-11-27 22:34:58,255 - INFO - __main__ - Dataset loaded: 48187 rows, 32 columns
+2026-11-27 22:34:58,256 - INFO - __main__ - Preparing features...
+2026-11-27 22:34:58,298 - INFO - __main__ - Checking engineered weather features...
+2026-11-27 22:34:58,298 - INFO - __main__ - Weather features detected: ['weather_Clear', 'weather_Clouds', 'weather_Drizzle', 'weather_Fog', 'weather_Haze', 'weather_Mist', 'weather_Rain', 'weather_Smoke', 'weather_Snow', 'weather_Squall', 'weather_Thunderstorm']
+2026-11-27 22:34:58,303 - INFO - __main__ - Using 11 weather encoded features.
+2026-11-27 22:34:58,307 - INFO - __main__ - No duplicate columns detected.
+2026-11-27 22:34:58,308 - INFO - __main__ - 25 features selected.
+2026-11-27 22:34:58,308 - INFO - __main__ - All 25 features validated.
+2026-11-27 22:34:59,652 - INFO - __main__ - Classification models trained successfully.
+2026-11-27 22:35:03,750 - INFO - __main__ - Regression models trained successfully.
+2026-11-27 22:35:03,765 - INFO - __main__ - Classification comparison saved.
+2026-11-27 22:35:03,766 - INFO - __main__ - Regression comparison saved.
+2026-11-27 22:35:03,766 - INFO - __main__ - Task 1 completed successfully.

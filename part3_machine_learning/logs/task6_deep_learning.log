@@ -1,0 +1,3 @@
+2026-11-25 22:45:08,251 - WARNING - werkzeug -  * Debugger is active!
+2026-11-25 22:45:08,256 - INFO - werkzeug -  * Debugger PIN: 799-143-498
+2026-11-25 22:45:12,634 - INFO - werkzeug -  * Detected change in 'C:\\Users\\JohnTan\\Documents\\GitHub\\smart-city-traffic-capstone\\part3_machine_learning\\task6_flask_api.py', reloading

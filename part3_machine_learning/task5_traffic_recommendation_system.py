@@ -1,6 +1,17 @@
 import os
 import pandas as pd
 import numpy as np
+import logging
+
+from utils.logger_config import (
+    setup_logging
+)
+
+setup_logging(
+    "logs/task5_traffic_recommendation_system.log"
+)
+
+logger = logging.getLogger(__name__)
 
 # =====================================================
 # SETUP
@@ -11,13 +22,15 @@ os.makedirs(
     exist_ok=True
 )
 
-print("Loading dataset...")
+logger.info(
+    "Loading dataset..."
+)
 
 df = pd.read_csv(
     "data/traffic_ml_ready.csv"
 )
 
-print(
+logger.info(
     f"Dataset loaded: "
     f"{df.shape[0]} rows, "
     f"{df.shape[1]} columns"
@@ -145,6 +158,11 @@ for day_type in ["Weekday", "Weekend"]:
 
     )
 
+    logger.info(
+    f"Generating recommendations for "
+    f"{day_type}"
+    )
+    
     top3 = hourly.head(3)
 
     print("\n" + "=" * 60)
@@ -288,14 +306,11 @@ recommendation_df.to_csv(
     index=False
 )
 
-print(
-    "\nSaved:"
-)
-
-print(
+logger.info(
+    "Traffic recommendations saved to "
     "results/traffic_recommendations.csv"
 )
 
-print(
-    "\nTask 5 completed successfully."
+logger.info(
+    "Task 5 completed successfully."
 )

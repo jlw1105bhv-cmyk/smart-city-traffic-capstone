@@ -1,0 +1,6 @@
+2026-11-27 22:39:49,779 - INFO - __main__ - Loading dataset...
+2026-11-27 22:39:49,908 - INFO - __main__ - Dataset loaded: 48187 rows, 32 columns
+2026-11-27 22:39:49,941 - INFO - __main__ - Generating recommendations for Weekday
+2026-11-27 22:39:49,959 - INFO - __main__ - Generating recommendations for Weekend
+2026-11-27 22:39:49,965 - INFO - __main__ - Traffic recommendations saved to results/traffic_recommendations.csv
+2026-11-27 22:39:49,965 - INFO - __main__ - Task 5 completed successfully.

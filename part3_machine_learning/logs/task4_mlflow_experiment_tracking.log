@@ -1,0 +1,9 @@
+2026-11-27 22:38:59,401 - INFO - __main__ - Loading dataset...
+2026-11-27 22:39:27,477 - WARNING - __main__ - Model artifact not logged: The saved sklearn model references untrusted types. If you are sure loading these types is safe, set the 'skops_trusted_types' parameter when calling 'log_model' or 'save_model' to the list of trusted types. Root error: Untrusted types found in the file: ['sklearn.tree._tree.Tree'].
+
+- sklearn.tree._tree.Tree: sklearn.tree._tree.Tree (the shared node storage for DecisionTree*, RandomForest*, ExtraTrees*, and GradientBoosting* models) stores raw node indices (left_child, right_child, feature) that scikit-learn indexes into without bounds checking. A malicious file can set these to out-of-range values: skops loads the object successfully, but calling .predict() on it can then crash the process (segfault) or read out-of-bounds memory. If you created the file yourself or otherwise fully trust its source, you can load it with trusted=["sklearn.tree._tree.Tree"].
+
+Only add the specific types you have reviewed and trust to the `trusted` argument; avoid passing everything reported by get_untrusted_types() just to make a file load.
+2026-11-27 22:39:27,507 - INFO - __main__ - Experiments logged successfully.
+2026-11-27 22:39:27,507 - INFO - __main__ - Experiment summary saved to results/mlflow_experiment_summary.csv
+2026-11-27 22:39:27,507 - INFO - __main__ - Task 4 completed successfully.
